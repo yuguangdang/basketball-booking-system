@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+main {
+  padding: 1rem 10rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+  height: 100vh;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.main-header {
+  width: 100%;
+}
+
+.main-header__nav {
+  display: flex;
+  padding: 1rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)),
+    url("../images/slam_dunk.jpeg");
+  height: 35rem;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.main-header__item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  /* position: absolute;
+  bottom: 0.5rem; */
+  font-size: large;
+  font-weight: bold;
+  width: 100vw;
+  /* justify-content: space-around; */
+}
+
+.right {
+  justify-content: right;
+}
+
+.left {
+  justify-content: left;
+}
+
+.main-header__item {
+  margin: 0 1rem;
+  padding: 0;
+}
+
+.main-header__item a {
+  text-decoration: none;
+  color: white;
+}
+
+#logout {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  font: bold;
+  color: white;
+}
+
+.main-header__item a:hover,
+#logout:hover,
+.main-header__item a:active,
+.main-header__item a.active {
+  color: #db9003c4;
+}
+
+.btn {
+  font: inherit;
+  border: 1px solid rgba(92, 2, 2, 0.75);
+  color: white;
+  background: rgba(92, 2, 2, 0.75);
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.btn:hover,
+.btn:active {
+  color: #db9003c4;
+  background-color: rgba(92, 2, 2, 0.75);
+}
+
+a {
+  text-decoration: none;
+}
+
+.user-message {
+  margin: auto;
+  width: 20rem;
+  border: 1.5px solid #4771fa;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background: #b9c9ff;
+  text-align: center;
+}
+
+.user-message--error {
+  border-color: rgb(105, 18, 18);
+  background: rgb(255, 176, 176);
+  color: rgb(105, 18, 18);
+}
+
+hr {
+margin-top: 2rem;
+}
+
+@media (max-width: 40rem) {
+  body {
+    font-size: 0.7rem;
+  }
+
+  .main-header__nav a,
+  #logout {
+    font-size: 0.7rem;
+  }
+
+  .main-header__nav {
+    height: 10rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+}
+
+  

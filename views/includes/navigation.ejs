@@ -1,0 +1,37 @@
+<header class="main-header">
+
+  <nav class="main-header__nav">
+    <ul class="main-header__item-list left">
+
+      <li class="main-header__item"><a class="<%= path === '/' ? 'active' : '' %>" href="/">Week's Players</a>
+      </li>
+      <% if (isAuthenticated) { %>
+        <li class="main-header__item"><a class="<%= path === '/join-game' ? 'active' : '' %>" href="join-game">Join
+            Game</a></li>
+        <% } %>
+    </ul>
+
+
+    <ul class="main-header__item-list right">
+      <% if (!isAuthenticated) { %>
+        <li class="main-header__item">
+          <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+        </li>
+        <li class="main-header__item">
+          <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+        </li>
+        <% } %>
+
+          <% if (isAuthenticated) { %>
+            <li class="main-header__item">
+              <a class="<%= path === '/my-account' ? 'active' : '' %>" href="/my-account">My Account</a>
+            </li>
+            <li class="main-header__item">
+              <form action="/logout" method="post">
+                <button type="submit" id="logout">Logout</button>
+              </form>
+            </li>
+            <% } %>
+    </ul>
+  </nav>
+</header>

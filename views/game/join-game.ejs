@@ -1,0 +1,20 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+
+  <main>
+    <form class="player-form" action="/add-player" method="POST">
+      <div class="form-control">
+        <p><span class="bold">Date: </span><span><%= date %><span></span></p>
+        <p><span class="bold">Time: </span><span><%= time %><span></span></p>
+        <p><span class="bold">Address: </span><span><%= address %><span></span></p>
+        <p><span class="bold">Player name: </span><span><%= name %><span></span></p>
+      </div>
+      <button class="btn" type="submit">Join</button>
+    </form>
+  </main>
+
+<%- include('../includes/end.ejs') %>

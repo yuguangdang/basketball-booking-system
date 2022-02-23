@@ -1,0 +1,8 @@
+{
+  "env": {
+    "MONGO_USER": "Yuguang",
+    "MONGO_PASSWORD": "PvRcAdfcxd7VFJi",
+    "MONGO_DEFAULT_DATABASE": "basketball-booking-system",
+    "STRIPE_KEY": "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"
+  }
+}

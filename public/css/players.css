@@ -1,0 +1,15 @@
+
+.players {
+    list-style: none;
+    padding: 0;
+}
+
+.player__item {
+    text-decoration: none;
+    background-color: rgba(92, 2, 2, 0.75);
+    padding: 1rem;
+    color: white;
+    margin: 0.4rem 0;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}

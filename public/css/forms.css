@@ -1,0 +1,35 @@
+.player-form {
+    margin: 2rem;
+}
+
+.form-control {
+    margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control select {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+}
+
+.form-control input {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 2px;
+}
+
+.form-control input:focus {
+    outline-color: #00695c;
+}
+
+.right {
+    right: 0;
+}
+
+.form-control input.invalid {
+    border: 3px rgb(105, 18, 18) solid;
+}
+
+
