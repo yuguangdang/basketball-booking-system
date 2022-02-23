@@ -165,7 +165,17 @@ exports.postSignup = (req, res, next) => {
             <h2>Looking forward to seeing you on court soon!</h2>
             `,
           });
-          res.redirect("/login");
+          req.flash('error', 'You have successfully registered! Please sign in!');
+          res.render("auth/login", {
+            path: "/login",
+            pageTitle: "Login",
+            isAuthenticated: req.session.isLoggedIn,
+            errorMessage: req.flash("error"),
+            oldInput: {
+              email: email,
+              password: ''
+            }
+          });
         });
     })
     .catch((err) => {
@@ -222,7 +232,7 @@ exports.postReset = (req, res, next) => {
           html: `
         <h1>Hey mate,
         <p>You requested a password reset.</p>
-        <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</P>
+        <p>Click this <a href="https://colindale-basketball-legend.herokuapp.com/reset/${token}">link</a> to set a new password.</P>
         `,
         });
       })
