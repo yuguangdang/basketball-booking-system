@@ -6,7 +6,12 @@
   <%- include('../includes/navigation.ejs') %>
 
   <main>
-    <form class="player-form" action="/add-player" method="POST">
+    <% if (errorMessage) { %>
+      <div class="user-message user-message--error">
+          <%= errorMessage %>
+      </div>
+      <% } %>
+    <form class="player-form" action="/join-game" method="POST">
       <div class="form-control">
         <p><span class="bold">Date: </span><span><%= date %><span></span></p>
         <p><span class="bold">Time: </span><span><%= time %><span></span></p>
