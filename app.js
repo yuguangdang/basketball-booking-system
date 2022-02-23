@@ -17,8 +17,8 @@ const morgan = require("morgan");
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster1.sjjwh.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 const Game = require("./models/game");
 
-const privateKey = fs.readFileSync("server.key");
-const certificate = fs.readFileSync("server.cert");
+// const privateKey = fs.readFileSync("server.key");
+// const certificate = fs.readFileSync("server.cert");
 
 const app = express();
 const store = new MongoDbStore({
