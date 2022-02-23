@@ -23,7 +23,7 @@
         <button class="btn" id="pay-btn">Go to pay</button>
 
         <script>
-          var stripe = Stripe('pk_test_51KU7EeG3TFFxX43IpSTPF4CXj7MmRuT90XQcPEpx33Cmyq5vfBWqnwtPv7X8B3Z4TZWS3VLI92LTLmEN2TdAw6aE00u30eVJAT');
+          var stripe = Stripe('pk_live_51KU7EeG3TFFxX43InYIeQcRdZgObKwheJHKZbwWFsYLQSrK9RMVM5egWNLrTuZ21tb5anPqC3ekGYDyCIFJxvWwy001WnxotlS');
           var payBtn = document.getElementById('pay-btn');
           payBtn.addEventListener('click', function () {
             stripe.redirectToCheckout({
