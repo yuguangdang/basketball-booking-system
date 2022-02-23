@@ -9,10 +9,14 @@ const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
 const getDate = require("./util/getDate");
 const flash = require("connect-flash");
-const constants = require("./lib/constants");
 const helmet = require("helmet");
 const compression = require("compression");
 const morgan = require("morgan");
+
+const constants = require("./lib/constants");
+const gameRoutes = require("./routes/game.js");
+const adminRoutes = require("./routes/admin.js");
+const authRoutes = require("./routes/auth.js");
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster1.sjjwh.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 const Game = require("./models/game");
@@ -28,16 +32,12 @@ const store = new MongoDbStore({
 
 app.set("view engine", "ejs");
 
-const gameRoutes = require("./routes/game.js");
-const adminRoutes = require("./routes/admin.js");
-const authRoutes = require("./routes/auth.js");
-
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, "access.log"),
   { flags: "a" }
 );
 
-app.use(helmet());
+// app.use(helmet());
 app.use(compression());
 app.use(morgan("combined", { stream: accessLogStream }));
 
