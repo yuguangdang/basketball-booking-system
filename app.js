@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const https = require("https");
+// const https = require("https");
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -17,8 +17,7 @@ const constants = require("./lib/constants");
 const gameRoutes = require("./routes/game.js");
 const adminRoutes = require("./routes/admin.js");
 const authRoutes = require("./routes/auth.js");
-
-const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster1.sjjwh.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.6heec.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 const Game = require("./models/game");
 
 // const privateKey = fs.readFileSync("server.key");

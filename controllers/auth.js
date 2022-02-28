@@ -6,35 +6,29 @@ const sendgridTransport = require("nodemailer-sendgrid-transport");
 const { validationResult } = require("express-validator");
 
 const Player = require("../models/player");
-const flash = require("connect-flash/lib/flash");
-
-const constants = require('../lib/constants')
+const constants = require("../lib/constants");
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
-      api_key:
-        "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",
+      api_key: `${process.env.SENDGRID_KEY}`,
     },
   })
 );
 
 exports.getLogin = (req, res, next) => {
-  let message = req.flash("error");
-  if (message.length > 0) {
-    message = message[0];
-  } else {
-    message = null;
-  }
+  let errorMessage = req.flash("error")[0];
+  let message = req.flash("message")[0];
   res.render("auth/login", {
     path: "/login",
     pageTitle: "Login",
     isAuthenticated: req.session.isLoggedIn,
-    errorMessage: message,
+    errorMessage: errorMessage,
+    message: message,
     oldInput: {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+    },
   });
 };
 
@@ -56,7 +50,7 @@ exports.postLogin = (req, res, next) => {
           req.session.player = player;
           return req.session.save((err) => {
             console.log(err);
-            res.redirect("/");
+            res.redirect("/my-account");
           });
         }
         req.flash("error", "Invalid email or password.");
@@ -67,8 +61,9 @@ exports.postLogin = (req, res, next) => {
           errorMessage: req.flash("error"),
           oldInput: {
             email: email,
-            password: password
-          }
+            password: password,
+          },
+          message: null
         });
       })
       .catch((err) => {
@@ -150,7 +145,7 @@ exports.postSignup = (req, res, next) => {
             email: email,
             password: hashedPassword,
             position: position,
-            gameNum: 0
+            gameNum: 0,
           });
           return player.save();
         })
@@ -165,17 +160,11 @@ exports.postSignup = (req, res, next) => {
             <h2>Looking forward to seeing you on court soon!</h2>
             `,
           });
-          req.flash('error', 'You have successfully registered! Please sign in!');
-          res.render("auth/login", {
-            path: "/login",
-            pageTitle: "Login",
-            isAuthenticated: req.session.isLoggedIn,
-            errorMessage: req.flash("error"),
-            oldInput: {
-              email: email,
-              password: ''
-            }
-          });
+          req.flash(
+            "message",
+            "You have successfully registered! Please sign in!"
+          );
+          res.redirect("/login");
         });
     })
     .catch((err) => {
@@ -275,12 +264,15 @@ exports.postNewPassword = (req, res, next) => {
   let resetPlayer;
 
   if (!errors.isEmpty()) {
-    req.flash('error', 'Please enter a password that has at least 5 characters.');
+    req.flash(
+      "error",
+      "Please enter a password that has at least 5 characters."
+    );
     return res.render("auth/new-password", {
       path: "/new-password",
       pageTitle: "New Password",
       isAuthenticated: req.session.isLoggedIn,
-      errorMessage:  req.flash("error"),
+      errorMessage: req.flash("error"),
       playerEmail: playerEmail,
     });
   }
@@ -308,14 +300,13 @@ exports.postNewPassword = (req, res, next) => {
 };
 
 exports.getMyAccount = (req, res, next) => {
-  Player.findOne({email: req.session.player.email}).then(player => {
-    res.render('auth/my-account', {
+  Player.findOne({ email: req.session.player.email }).then((player) => {
+    res.render("auth/my-account", {
       path: "/my-account",
       pageTitle: "My Account",
       player: player,
       isAuthenticated: req.session.isLoggedIn,
-      gamesPerStar: constants.GAMES_PER_STAR
+      gamesPerStar: constants.GAMES_PER_STAR,
     });
-  })
-  
-}
+  });
+};
