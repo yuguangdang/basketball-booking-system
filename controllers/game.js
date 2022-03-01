@@ -103,6 +103,7 @@ exports.getCheckout = (req, res, next) => {
         sessionId: session.id,
         address: constants.ADDRESS,
         time: constants.TIME,
+        stripePublicKey: process.env.STRIPE_PUBLIC_KEY
       });
     });
 };

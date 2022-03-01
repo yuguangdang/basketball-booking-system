@@ -317,7 +317,6 @@ exports.getMyAccount = (req, res, next) => {
           });
         }
       });
-      console.log(playedGames);
       return playedGames;
     })
     .then((playedGames) => {

@@ -9,28 +9,31 @@
 
       <main>
         <p><span class="bold">Date: </span><span>
-          <%= date %>
-        </span></p>
+            <%= date %>
+          </span></p>
         <p><span class="bold">Time: </span><span>
-          <%= time %>
-        </span></p>
+            <%= time %>
+          </span></p>
         <p><span class="bold">Address: </span><span>
-          <%= address %>
-        </span></p>
+            <%= address %>
+          </span></p>
         <p><span class="bold">Sum: </span><span>
-          £ <%= fee %>
+            £ <%= fee %>
           </span></p>
         <button class="btn" id="pay-btn">Go to pay</button>
 
         <script>
-          var stripe = Stripe('pk_test_51KU7EeG3TFFxX43IpSTPF4CXj7MmRuT90XQcPEpx33Cmyq5vfBWqnwtPv7X8B3Z4TZWS3VLI92LTLmEN2TdAw6aE00u30eVJAT');
-          var payBtn = document.getElementById('pay-btn');
-          payBtn.addEventListener('click', function () {
+          var stripe = Stripe(
+            "pk_live_51KU7EeG3TFFxX43InYIeQcRdZgObKwheJHKZbwWFsYLQSrK9RMVM5egWNLrTuZ21tb5anPqC3ekGYDyCIFJxvWwy001WnxotlS"
+          );
+          var payBtn = document.getElementById("pay-btn");
+          payBtn.addEventListener("click", function () {
             stripe.redirectToCheckout({
-              sessionId: '<%= sessionId %>'
+              sessionId: "<%= sessionId %>",
             });
           });
         </script>
+
       </main>
 
       <%- include('../includes/end.ejs') %>
