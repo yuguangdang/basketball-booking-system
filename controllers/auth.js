@@ -6,6 +6,7 @@ const sendgridTransport = require("nodemailer-sendgrid-transport");
 const { validationResult } = require("express-validator");
 
 const Player = require("../models/player");
+const Game = require("../models/game");
 const constants = require("../lib/constants");
 
 const transporter = nodemailer.createTransport(
@@ -63,7 +64,7 @@ exports.postLogin = (req, res, next) => {
             email: email,
             password: password,
           },
-          message: null
+          message: null,
         });
       })
       .catch((err) => {
@@ -300,13 +301,40 @@ exports.postNewPassword = (req, res, next) => {
 };
 
 exports.getMyAccount = (req, res, next) => {
-  Player.findOne({ email: req.session.player.email }).then((player) => {
-    res.render("auth/my-account", {
-      path: "/my-account",
-      pageTitle: "My Account",
-      player: player,
-      isAuthenticated: req.session.isLoggedIn,
-      gamesPerStar: constants.GAMES_PER_STAR,
+  const playedGames = [];
+  Game.find()
+    .then((games) => {
+      games.forEach((game) => {
+        if (
+          game.players.filter(
+            (player) =>
+              player.playerId.toString() === req.session.player._id.toString()
+          ).length > 0
+        ) {
+          playedGames.push({
+            gameDate: game.date,
+            gameFee: game.fee,
+          });
+        }
+      });
+      console.log(playedGames);
+      return playedGames;
+    })
+    .then((playedGames) => {
+      let totalCost = 0;
+      for (let game of playedGames) {
+        totalCost += game.gameFee
+      }
+      Player.findOne({ email: req.session.player.email }).then((player) => {
+        res.render("auth/my-account", {
+          path: "/my-account",
+          pageTitle: "My Account",
+          player: player,
+          isAuthenticated: req.session.isLoggedIn,
+          gamesPerStar: constants.GAMES_PER_STAR,
+          playedGames: playedGames,
+          totalCost: totalCost
+        });
+      });
     });
-  });
 };
