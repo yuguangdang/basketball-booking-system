@@ -5,7 +5,7 @@ const constants = require("../lib/constants");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const flash = require("connect-flash/lib/flash");
 
-exports.getPlayers = (req, res, next) => {
+exports.getIndexs = (req, res, next) => {
   req.game.populate("players.playerId").then((game) => {
     const playerList = game.players;
     res.render("game/index", {

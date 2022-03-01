@@ -4,7 +4,7 @@ const router = express.Router();
 
 const playersController = require('../controllers/game')
 
-router.get("/", playersController.getPlayers);
+router.get("/", playersController.getIndexs);
 
 router.get("/join-game", playersController.getJoinGame);
 
