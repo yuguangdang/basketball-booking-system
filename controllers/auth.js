@@ -165,7 +165,17 @@ exports.postSignup = (req, res, next) => {
             "message",
             "You have successfully registered! Please sign in!"
           );
-          res.redirect("/login");
+          res.render("auth/login", {
+            path: "/login",
+            pageTitle: "Login",
+            isAuthenticated: req.session.isLoggedIn,
+            errorMessage: '',
+            message: req.flash("message")[0],
+            oldInput: {
+              email: email,
+              password: "",
+            },
+          });
         });
     })
     .catch((err) => {
