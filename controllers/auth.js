@@ -133,7 +133,7 @@ exports.postSignup = (req, res, next) => {
     .then((user) => {
       if (user) {
         req.flash(
-          "error",
+          "message",
           "It seems you are already registered. Please login."
         );
         return res.redirect("/login");
@@ -163,7 +163,7 @@ exports.postSignup = (req, res, next) => {
           });
           req.flash(
             "message",
-            "You have successfully registered! Please sign in!"
+            "You're all set mate! Go ahead and login!"
           );
           res.render("auth/login", {
             path: "/login",
@@ -223,7 +223,7 @@ exports.postReset = (req, res, next) => {
         player.save();
       })
       .then((result) => {
-        req.flash("error", "Please check your email to reset the password.");
+        req.flash("message", "Please check your email to reset the password.");
         res.redirect("/login");
         transporter.sendMail({
           to: req.body.email,
@@ -232,7 +232,8 @@ exports.postReset = (req, res, next) => {
           html: `
         <h1>Hey mate,
         <p>You requested a password reset.</p>
-        <p>Click this <a href="https://colindale-basketball-legend.herokuapp.com/reset/${token}">link</a> to set a new password.</P>
+        
+        <p>Click this <a href="https://basketball-booking-system.herokuapp.com/reset/${token}">link</a> to set a new password.</P>
         `,
         });
       })
@@ -302,7 +303,7 @@ exports.postNewPassword = (req, res, next) => {
       resetPlayer.save();
     })
     .then((result) => {
-      req.flash("error", "Now you can login using new password.");
+      req.flash("message", "Now you can login using the new password.");
       res.redirect("/login");
     })
     .catch((err) => {
