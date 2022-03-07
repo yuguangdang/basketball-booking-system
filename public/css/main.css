@@ -75,6 +75,14 @@ main {
   text-align: center;
 }
 
+#player_num {
+  font-family: "Comforter Brush", cursive;
+  color: rgb(102 28 28);
+  text-shadow: rgb(10, 8, 8) 1.5px 1.5px 1.5px;
+  font-size: 3rem;
+  text-align: center;
+}
+
 #logout {
   background: none;
   border: none;
