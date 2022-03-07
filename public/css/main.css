@@ -49,6 +49,8 @@ main {
 
 .right {
   justify-content: right;
+  position: absolute;
+  right: 1rem;
 }
 
 .left {
