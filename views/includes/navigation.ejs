@@ -1,7 +1,7 @@
 <header class="main-header">
 
   <nav class="main-header__nav">
-    <ul class="main-header__item-list left">
+    <ul class="main-header__item-list">
 
       <li class="main-header__item"><a class="<%= path === '/' ? 'active' : '' %>" href="/">Week's Players</a>
       </li>
@@ -11,7 +11,7 @@
         <% } %>
     </ul>
 
-    <ul class="main-header__item-list right">
+    <ul class="main-header__item-list">
       <% if (!isAuthenticated) { %>
         <li class="main-header__item">
           <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>

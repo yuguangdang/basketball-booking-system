@@ -47,14 +47,6 @@ main {
   font-weight: bold;
 }
 
-.right {
-  justify-content: right;
-}
-
-.left {
-  justify-content: left;
-}
-
 .main-header__item {
   margin: 0 1rem;
   padding: 0;
