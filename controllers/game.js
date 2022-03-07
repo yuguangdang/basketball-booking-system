@@ -90,8 +90,8 @@ exports.getCheckout = (req, res, next) => {
           quantity: 1,
         },
       ],
-      success_url: req.protocol + "://" + req.get("host") + "/checkout/success",
-      cancel_url: req.protocol + "://" + req.get("host") + "/checkout/cancel",
+      success_url: req.protocol + "s://" + req.get("host") + "/checkout/success",
+      cancel_url: req.protocol + "s://" + req.get("host") + "/checkout/cancel",
     })
     .then((session) => {
       res.render("game/checkout", {

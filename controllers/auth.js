@@ -343,7 +343,7 @@ exports.getMyAccount = (req, res, next) => {
           isAuthenticated: req.session.isLoggedIn,
           gamesPerStar: constants.GAMES_PER_STAR,
           playedGames: playedGames,
-          totalCost: totalCost
+          totalCost: totalCost.toFixed(2)
         });
       });
     });
