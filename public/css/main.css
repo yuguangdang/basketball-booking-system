@@ -78,7 +78,7 @@ main {
   font-family: "Comforter Brush", cursive;
   color: rgb(102 28 28);
   text-shadow: rgb(10, 8, 8) 1.5px 1.5px 1.5px;
-  font-size: 1.2rem;
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -163,5 +163,9 @@ hr {
   .head {
     font-size: 1.5rem;
     text-shadow: rgb(10, 8, 8) 1.5px 1.5px 1.5px;
+  }
+
+  #player_num {
+    font-size: 1.2rem;
   }
 }
