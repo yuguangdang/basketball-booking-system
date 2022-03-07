@@ -12,7 +12,7 @@ exports.getIndexs = (req, res, next) => {
       players: playerList,
       game: game,
       path: "/",
-      pageTitle: "Players",
+      pageTitle: "This week's Players",
       loginPlayer: req.session.player ? req.session.player : "",
       isAuthenticated: req.session.isLoggedIn,
       isAdmin: req.session.player

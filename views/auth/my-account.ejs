@@ -2,36 +2,52 @@
   <link rel="stylesheet" href="/css/forms.css">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/tables.css">
-</head>
+  </head>
 
-<body>
-  <%- include('../includes/navigation.ejs') %>
+  <body>
+    <%- include('../includes/navigation.ejs') %>
 
-  <main>
+      <main>
         <h1>Player Account</h1>
-        <p><span class="bold">Name: </span><span><%= player.name %></span></p>
-        <p><span class="bold">Email Address: </span><span><%= player.email %></span></p>
+        <p><span class="bold">Name: </span><span>
+            <%= player.name %>
+          </span></p>
+        <p><span class="bold">Email Address: </span><span>
+            <%= player.email %>
+          </span></p>
         <p><span class="bold">Password: </span><span>********</span></p>
         <a class="btn" href="/reset">Change Password</a>
         <hr>
         <h1>Player Info</h1>
-        <p><span class="bold">Position on court: </span><span><%= player.position %></span></p>
-        <p><span class="bold">Number of games: </span><span><%= player.gameNum %></span></p>
+        <p><span class="bold">Position on court: </span><span>
+            <%= player.position %>
+          </span></p>
+        <p><span class="bold">Number of games: </span><span>
+            <%= player.gameNum %>
+          </span></p>
         <p>
           <span class="bold">Player Level: </span>
-          <% if (Math.floor(player.gameNum / gamesPerStar) < 1)  { %>
-          <span>&#11088</span>
-          <% } else if (Math.floor(player.gameNum / gamesPerStar) < 2) { %>
-            <span>&#11088</span><span>&#11088</span>
-          <% } else if (Math.floor(player.gameNum / gamesPerStar) < 3) { %>
-            <span>&#11088</span><span>&#11088</span><span>&#11088</span>
-          <% } else if (Math.floor(player.gameNum / gamesPerStar) < 4) { %>
-            <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
-          <% } else { %>
-            <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
-          <% } %>
+          <% if (Math.floor(player.gameNum / gamesPerStar) < 1) { %>
+            Rookie
+            <span>&#11088</span>
+            <% } else if (Math.floor(player.gameNum / gamesPerStar) < 2) { %>
+              Pro
+              <span>&#11088</span><span>&#11088</span>
+              <% } else if (Math.floor(player.gameNum / gamesPerStar) < 3) { %>
+                All-Star
+                <span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                <% } else if (Math.floor(player.gameNum / gamesPerStar) < 4) { %>
+                  Superstar
+                  <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                  <% } else if (Math.floor(player.gameNum / gamesPerStar) < 5) { %>
+                    Elite
+                    <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                    <% } else {%>
+                      Legend
+                      <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                      <% } %>
         </p>
-        <p>(P.S. You will earn a star by every <%= gamesPerStar %> games you played.)</p>
+        <p>(P.S. You will get to the next level by every <%= gamesPerStar %> games you played.)</p>
         <hr>
         <h1>Player History</h1>
         <table class="table table-game-history">
@@ -39,17 +55,21 @@
             <th>Game Date</th>
             <th>Fee</th>
           </tr>
-          <% for (let game of playedGames)  { %>
+          <% for (let game of playedGames) { %>
             <tr>
-              <td><%= game.gameDate %></td>
-              <td>£<%= game.gameFee %></td>
+              <td>
+                <%= game.gameDate %>
+              </td>
+              <td>£<%= game.gameFee %>
+              </td>
             </tr>
-          <% } %>
-          <tr>
-            <th>Total Cost</th>
-            <th>£<%= totalCost %></th>
-          </tr>
+            <% } %>
+              <tr>
+                <th>Total Cost</th>
+                <th>£<%= totalCost %>
+                </th>
+              </tr>
         </table>
-  </main>
+      </main>
 
-<%- include('../includes/end.ejs') %>
+      <%- include('../includes/end.ejs') %>

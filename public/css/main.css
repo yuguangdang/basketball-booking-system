@@ -6,6 +6,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Open Sans", sans-serif;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
 }
 
 main {
@@ -40,12 +42,9 @@ main {
   margin: 0;
   padding: 0;
   display: flex;
-  /* position: absolute;
-  bottom: 0.5rem; */
-  font-size: large;
+  font-size: 1.5rem;
   font-weight: bold;
   width: 100vw;
-  /* justify-content: space-around; */
 }
 
 .right {
@@ -64,6 +63,14 @@ main {
 .main-header__item a {
   text-decoration: none;
   color: white;
+}
+
+.head {
+  font-family: 'Comforter Brush', cursive;
+  color: rgb(102 28 28);
+  text-shadow: rgb(10, 8, 8) 5px 5px 5px;
+  font-size: 3rem;
+  text-align: center;
 }
 
 #logout {
@@ -134,7 +141,7 @@ margin-top: 2rem;
 
   .main-header__nav a,
   #logout {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 
   .main-header__nav {
@@ -143,6 +150,10 @@ margin-top: 2rem;
 
   main {
     padding: 0.5rem;
+  }
+
+  .head {
+    font-size: 1.5rem;
   }
 }
 

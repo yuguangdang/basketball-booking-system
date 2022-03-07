@@ -1,76 +1,94 @@
 <%- include('../includes/head.ejs') %>
     <link rel="stylesheet" href="/css/players.css">
     <link rel="stylesheet" href="/css/tables.css">
-</head>
 
-<body>
-    <%- include('../includes/navigation.ejs') %>
+    </head>
 
-    <main>
-        <% if (players.length > 0) { %>
-            <h3>This week's players (<%= players.length %> players):</h3>
-            <table class="table">
-                <tr>
-                  <th>Player name</th>
-                  <th>Position</th>
-                  <th>Level</th>
-                  <th>Fee</th>
-                  <th>Payment</th>
-                </tr>
-                <% for (let player of players) { %>
-                  <tr>
-                    <td>
-                        <%= player.playerId.name %>
-                    </td>
-                    <td>
-                        <%= player.playerId.position %>
-                    </td>
-                    <td>
-                        <% if (Math.floor(player.playerId.gameNum / gamesPerStar) < 1)  { %>
-                            <span>&#11088</span>
-                            <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) < 2) { %>
-                              <span>&#11088</span><span>&#11088</span>
-                            <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) < 3) { %>
-                              <span>&#11088</span><span>&#11088</span><span>&#11088</span>
-                            <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) < 4) { %>
-                              <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
-                            <% } else { %>
-                              <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+
+            <main>
+                <h1 class="head">Colindale Legend</h1>
+                <% if (players.length> 0) { %>
+                    <h3>This week's players (<%= players.length %> players):</h3>
+                    <table class="table">
+                        <tr>
+                            <th>Player name</th>
+                            <th>Position</th>
+                            <th>Level</th>
+                            <th>Fee</th>
+                            <th>Payment</th>
+                        </tr>
+                        <% for (let player of players) { %>
+                            <tr>
+                                <td>
+                                    <%= player.playerId.name %>
+                                </td>
+                                <td>
+                                    <%= player.playerId.position %>
+                                </td>
+                                <td>
+                                    <% if (Math.floor(player.playerId.gameNum / gamesPerStar) < 1) { %>
+                                        Rookie
+                                        <span>&#11088</span>
+                                        <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) < 2) { %>
+                                            Pro
+                                            <span>&#11088</span><span>&#11088</span>
+                                            Pro
+                                            <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) < 3) { %>
+                                                All-Star
+                                                <span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                                                <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) < 4) {
+                                                    %>
+                                                    Superstar
+                                                    <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                                                    <% } else if (Math.floor(player.playerId.gameNum / gamesPerStar) <
+                                                        5) { %>
+                                                        Elite
+                                                        <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                                                        <% } else {%>
+                                                            Legend
+                                                            <span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span><span>&#11088</span>
+                                                            <% } %>
+                                </td>
+                                <td>
+                                    £<%= game.fee %>
+                                </td>
+                                <td>
+                                    <% if (game.isFinished===false) { %>
+                                        <form action="/cancel" method="POST">
+                                            <button
+                                                class="btn <%= player.playerId.email == loginPlayer.email? '' : 'hide' %>"
+                                                type="submit">Cancel</button>
+                                        </form>
+                                        <% } else { %>
+                                            <% if (player.paymentStatus===false) { %>
+                                                <a class="btn <%= player.playerId.email == loginPlayer.email? '' : 'hide' %>"
+                                                    href="/checkout">Pay</a>
+                                                <% } else { %>
+                                                    Paid
+                                                    <% } %>
+                                                        <% } %>
+                                </td>
+                            </tr>
                             <% } %>
-                    </td>
-                    <td>
-                        £<%= game.fee %>
-                    </td>
-                    <td>
-                        <% if (game.isFinished === false) { %>
-                            <form action="/cancel" method="POST">
-                                <button class="btn <%= player.playerId.email == loginPlayer.email? '' : 'hide' %>"  type="submit">Cancel</button>
-                            </form>
-                        <% } else { %>
-                            <% if (player.paymentStatus === false) { %>
-                                    <a class="btn <%= player.playerId.email == loginPlayer.email? '' : 'hide' %>"  href="/checkout">Pay</a>           
-                            <% } else { %>
-                                Paid
-                            <% } %>
+                    </table>
+                    <p>(P.S. As more players join the game, the shared price will be cheaper. You would be able to pay
+                        after the game.)</p>
+
+                    <% } else { %>
+                        <h3>Waiting for players to register ...</h3>
                         <% } %>
-                    </td>
-                  </tr>
-                  <% } %>
-              </table>
-              <p>(P.S. As more players join the game, the shared price will be cheaper. You would be able to pay after the game.)</p>
+                            <% if (isAdmin===true && game.isFinished===false) { %>
+                                <form action="/finish-game" method="POST">
+                                    <button class="btn" type="submit">Finish Game</a>
+                                </form>
+                                <% } else if (isAdmin===true) { %>
+                                    <form action="/save-game" method="POST">
+                                        <button class="btn" type="submit">Save Game</a>
+                                    </form>
+                                    <% } %>
+            </main>
 
-        <% } else { %>
-            <h3>Waiting for players to register ...</h3>
-        <% } %>
-        <% if (isAdmin === true && game.isFinished === false) { %>
-            <form action="/finish-game" method="POST">
-                <button class="btn" type="submit">Finish Game</a>
-            </form>
-        <% } else if (isAdmin === true) { %>
-            <form action="/save-game" method="POST">
-                <button class="btn" type="submit">Save Game</a>
-            </form>
-        <% } %>
-    </main>
-
-<%- include('../includes/end.ejs') %>
+            <%- include('../includes/end.ejs') %>
