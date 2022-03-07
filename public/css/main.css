@@ -96,7 +96,7 @@ main {
   border: 1px solid rgba(92, 2, 2, 0.75);
   color: white;
   background: rgba(92, 2, 2, 0.75);
-  border-radius: 20px;
+  border-radius: 4px;
   cursor: pointer;
   padding: 0.3rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
