@@ -28,7 +28,7 @@ main {
 .main-header__nav {
   display: flex;
   padding: 1rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)),
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.9)),
     url("../images/slam_dunk.jpeg");
   height: 30rem;
   width: 100vw;
@@ -100,7 +100,7 @@ main {
   cursor: pointer;
   padding: 0.3rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-  margin: 0.2rem 0;
+  margin: 0.2rem;
 }
 
 .btn:hover,
