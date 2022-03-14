@@ -31,14 +31,8 @@ const store = new MongoDbStore({
 
 app.set("view engine", "ejs");
 
-const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "access.log"),
-  { flags: "a" }
-);
-
 // app.use(helmet());
 app.use(compression());
-app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -83,7 +77,7 @@ app.use(adminRoutes);
 app.use((req, res, next) => {
   res
     .status(404)
-    .render("404", { path: "wrong path", pageTitle: "Page Not Found" });
+    .render("404", { path: "wrong path", pageTitle: "Page Not Found", isAuthenticated: false });
 });
 
 mongoose

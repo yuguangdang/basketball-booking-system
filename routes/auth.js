@@ -5,6 +5,8 @@ const router = express.Router();
 
 const authController = require("../controllers/auth");
 
+const isLoggedIn = require('../middleware/is-loggedIn');
+
 router.get("/login", authController.getLogin);
 
 router.post("/login", authController.postLogin);
@@ -53,6 +55,6 @@ router.post(
   authController.postNewPassword
 );
 
-router.get("/my-account", authController.getMyAccount);
+router.get("/my-account", isLoggedIn, authController.getMyAccount);
 
 module.exports = router;
