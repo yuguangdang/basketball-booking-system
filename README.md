@@ -2,7 +2,7 @@
 
 This is a private project used for my basketball club members to register and pay for the basketball session they attend.
 
-I run a local basketball club and I block book a sport hall with a local school. The booking fee is shared among attendants for each game. However, the number of attendants varies each time and keeping checking everyone's payment is a pain in the neck. So I developed this web app to automatically calculate the fee based on the number of attendants and mark the ones who have made the payment. It saves me a lot time and helps me manage the basketball club more effectively.
+I run a local basketball club and I block book a sports hall with a local school. The booking fee is shared among attendants for each game. However, the number of attendants varies each time and keeping checking everyone's payment is a pain in the neck. So I developed this web app to automatically calculate the fee based on the number of attendants and mark the ones who have made the payment. It saves me a lot time and helps me manage the basketball club more effectively.
 
 The system was built with NodeJS, Express and MongoDB. The payment process was implemented using Stripe API.
 
